@@ -16,7 +16,19 @@ class MyString {
 		MyString(const MyString& str);
 		void MyStrStr(const char* str);
 		void  MyChr();
+		int MyStrLen();
 };
+
+
+int MyString::MyStrLen()
+{
+	int length = strlen(str);
+	cout << endl <<"Characters in text: " << length;
+	
+	return 0;
+}
+
+
 
 void MyString::MyChr()
 {
@@ -30,6 +42,7 @@ void MyString::MyChr()
 
 			cout << endl << "Symbol " << submol << " : " << count;
 			coub = true;
+			break;
 
 		}
 		else {
@@ -43,6 +56,8 @@ void MyString::MyChr()
 	}
 	
 }
+
+
 
 MyString::MyString(const MyString& temp)
 {
@@ -119,6 +134,7 @@ int main() {
 	MyString obj2(obj1);//делаем копию , вы3ывая констрктор.
 		obj2.Conclusion();
 	obj1.MyChr();
+	obj1.MyStrLen();
 	
 	
 }
