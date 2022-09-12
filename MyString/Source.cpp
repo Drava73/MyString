@@ -6,6 +6,7 @@ class MyString {
 		char* str;
 		char* strsearch;
 		int length;
+
 	public:
 		MyString();
 		MyString(const char* txt);
@@ -18,6 +19,8 @@ class MyString {
 		void  MyChr();
 		int MyStrLen();
 		void MyStrCat(MyString& obj);
+		void MyDelChr();//доделать
+		int MyStrCmp(const char* s1, const char* s2);//сравнение строк
 };
 
 
@@ -58,7 +61,51 @@ void MyString::MyStrCat(MyString& obj)//объединение строк
 	
 }
 
+int MyString::MyStrCmp(const char* s1, const char* s2)
+{
+	if (strlen(s1) == strlen(s2)) {
+		cout << "0";
+	}
+	if(strlen(s1) < strlen(s2)) {
+		cout << "-1";
+	}
+	if (strlen(s1) > strlen(s2)) {
+		cout << "1";
+	}
+	return 0;
+	
+}
 
+/*void MyString::MyDelChr()
+{
+	MyString newStr;
+	newStr.str = new char[length+1];
+	cout << endl << "Input symbol for del:";
+	char submol;
+	cin >> submol;
+	int count = 1;
+	int coub = 1;
+	for (int i = 0; i < strlen(str); i++) {
+		if (str[i] == submol) {
+
+			cout << endl << "Symbol was del " << submol << " : " << count;
+			
+			break;
+
+		}
+		else {
+			count++;
+			coub = false;
+		}
+	}
+	if (coub == false) {
+		cout << endl << "Symbol not found";
+
+	}
+
+}
+
+*/
 
 void MyString::MyChr()
 {
@@ -96,7 +143,7 @@ MyString::MyString(const MyString& temp)
 	cout << endl << "Copyy";
 }
 
-void MyString::MyStrStr(const char* txt)
+void MyString::MyStrStr(const char* txt)//доделать
 {
 	cout << endl << "Input text for search:";
 	strsearch = new char[strlen(txt) + 1];
@@ -165,7 +212,7 @@ int main() {
 		obj2.Conclusion();
 	obj1.MyChr();
 	obj1.MyStrLen();
-	
+	MyString MyStrCmp(char *obj1,char *obj2);//должен выводить 0 так как второй обьект это копия первого.
 	
 	
 
