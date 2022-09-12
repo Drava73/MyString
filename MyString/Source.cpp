@@ -20,7 +20,7 @@ MyString::MyString(const MyString& temp)
 {
 	str = new char[strlen(temp.str) + 1];
 	strcpy_s(str, strlen(temp.str) + 1, temp.str);
-	cout << endl << "Copy";
+	cout << endl << "Copyy";
 }
 
 MyString::MyString()
