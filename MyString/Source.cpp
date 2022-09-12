@@ -17,6 +17,7 @@ class MyString {
 		void MyStrStr(const char* str);
 		void  MyChr();
 		int MyStrLen();
+		void MyStrCat(MyString& obj);
 };
 
 
@@ -26,6 +27,35 @@ int MyString::MyStrLen()
 	cout << endl <<"Characters in text: " << length;
 	
 	return 0;
+}
+
+void MyString::MyStrCat(MyString& obj)//объединение строк
+{
+	
+	MyString newStr;
+
+	int length = strlen(str);
+	int secondlength = strlen(obj.str);
+
+	newStr.str = new char[length + secondlength + 1];
+
+	int i = 0;
+
+	for (; i < length; i++)
+	{
+		newStr.str[i] = str[i];
+	}
+
+
+	for (size_t j = 0; j < secondlength; j++, i++)
+	{
+		newStr.str[i] = obj.str[j];
+	}
+
+	cout << newStr.str[length + secondlength] ;
+
+	
+	
 }
 
 
@@ -137,6 +167,8 @@ int main() {
 	obj1.MyStrLen();
 	
 	
+	
+
 }
 
 
