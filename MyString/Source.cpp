@@ -77,19 +77,40 @@ void MyString::MyDelChr()
 	int length = strlen(str);
 	cout << endl << "Input symbol for Del:";
 	cin >> c;
-	for (int i = 0; i < length; i++)
-	{
-		if (str[i] != c) {
-			for (int j = i; j < length; j++) {
-				str[j] = str[i + 1];
-				
-			}
-		}
-		else {
-			cout << "no symbol" << endl;
+	int Index = -1;
+
+	for (int i = 0; i < length; ++i) {
+		if (str[i] == c) {
+			Index = i;
+			break;
 		}
 	}
-	cout << nwstr;
+
+	if (Index == -1) {
+		return;
+	}
+
+	MyString Temp;
+
+	delete[] Temp.str;
+
+	Temp.length = --length;
+	Temp.str = new char[Temp.length];
+
+	for (int i = 0; i < Index; ++i) {
+		Temp.str[i] = str[i];
+	}
+
+	for (int i = Index; i < Temp.length; ++i) {
+		Temp.str[i] = str[i + 1];
+	}
+
+	delete[] str;
+
+	length = Temp.length;
+	str = new char[length];
+
+	strcpy_s(str, length, Temp.str);
 }
 
 int MyString::MyStrCmp(MyString& b)
