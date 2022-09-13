@@ -252,7 +252,7 @@ int main() {
 	
 	//obj1.MyDelChr();
 	obj1.Conclusion();
-	//MyString MyStrCmp(char *obj1,char *obj2);//должен выводить 0 так как второй обьект это копия первого.
+	
 	cout << MyString::GetCount();//-должен выводить кол.во обьектов.
 	
 
