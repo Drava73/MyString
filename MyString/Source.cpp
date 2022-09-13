@@ -16,7 +16,7 @@ class MyString {
 		void Input();
 		void Conclusion();
 		MyString(const MyString& str);
-		void MyStrStr(const char* str);
+		bool MyStrStr(const char* str);
 		void  MyChr();
 		int MyStrLen();
 		void MyStrCat(MyString& obj);
@@ -144,11 +144,22 @@ MyString::MyString(const MyString& temp)
 	cout << endl << "Copyy";
 }
 
-void MyString::MyStrStr(const char* txt)
+bool MyString::MyStrStr(const char* str)
 {
-	cout << endl << "Input text for search:";
-	strsearch = new char[strlen(txt) + 1];
-	strcpy_s(strsearch, strlen(txt) + 1, txt);
+	int Size = strlen(str);
+	for (int i = 0; i < Size; ++i) {
+		for (int j = i; j < strlen(str) + 1; ++j) {
+			if (this->str[j] != str[j - i]) {
+				continue;
+			}
+
+			else if (str[j] == '\0') {
+				return true;
+			}
+		}
+	}
+
+	return false;
 
 		
 
