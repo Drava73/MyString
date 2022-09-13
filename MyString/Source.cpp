@@ -6,7 +6,7 @@ class MyString {
 		char* str;
 		char* strsearch;
 		int length;
-
+		static int count;
 	public:
 		MyString();
 		MyString(const char* txt);
@@ -21,7 +21,15 @@ class MyString {
 		void MyStrCat(MyString& obj);
 		void MyDelChr();//доделать
 		int MyStrCmp(const char* s1, const char* s2);//сравнение строк
+		static int GetCount()  
+		{
+			cout << endl << "Obj in MyString:";
+			return count;
+		}
+
+
 };
+int MyString::count = 0;
 
 
 int MyString::MyStrLen()
@@ -157,13 +165,14 @@ void MyString::MyStrStr(const char* txt)//доделать
 
 MyString::MyString()
 {
+	count++;
 	str = nullptr;
 	length = 0;
 }
 
 MyString::MyString(const char* txt)//ввод строки любого ра3мера
 {
-	
+	count++;
 	str = new char[strlen(txt) + 1];
 	strcpy_s(str, strlen(txt) + 1, txt);
 
@@ -173,10 +182,12 @@ MyString::MyString(const char* txt)//ввод строки любого ра3мера
 MyString::~MyString()
 {
 	delete[]str;
+	count--;
 }
 
 void MyString::Input()//до 80 символов
 {
+	count++;
 	char buff[80];
 	cout << "Enter txt -  ";
 	cin.getline(buff, 80);
@@ -203,6 +214,7 @@ int main() {
 	 
 	
 	MyString obj1;
+	
 	MyString str("ASDFasdfasdfak;askdf;alskdf;laksdfaskd;flkas;dfk;asdkf;laks;dfk;aks;ldfka;lskdf;asdkf;aksd;lfkaksd;flkalsdfsalkdf;laskdf;laskdf;lkas;ldfk;laskdf;asldkfl;askdf;lsakdf;as;ldfk;klasdfk;fasdk;lafsd;klfsadk;lafsdk;lfasd;klafsd;kfasd;kfasd;kalfsd;lkafsd;klfdsakfasd;klfas;ldfsadf");
 	//больше 80символов
 	//str.Conclusion();
@@ -212,8 +224,8 @@ int main() {
 		obj2.Conclusion();
 	obj1.MyChr();
 	obj1.MyStrLen();
-	MyString MyStrCmp(char *obj1,char *obj2);//должен выводить 0 так как второй обьект это копия первого.
-	
+	//MyString MyStrCmp(char *obj1,char *obj2);//должен выводить 0 так как второй обьект это копия первого.
+	cout << MyString::GetCount();//-должен выводить кол.во обьектов.
 	
 
 }
