@@ -5,6 +5,7 @@ class MyString {
 	private:
 		char* str;
 		char* strsearch;
+		char* nwstr;
 		int length;
 		static int count;
 	public:
@@ -19,8 +20,8 @@ class MyString {
 		void  MyChr();
 		int MyStrLen();
 		void MyStrCat(MyString& obj);
-		void MyDelChr();//доделать
-		int MyStrCmp(const char* s1, const char* s2);//сравнение строк
+		void MyDelChr();
+		int MyStrCmp(MyString& b);
 		static int GetCount()  
 		{
 			cout << endl << "Obj in MyString:";
@@ -69,51 +70,43 @@ void MyString::MyStrCat(MyString& obj)//объединение строк
 	
 }
 
-int MyString::MyStrCmp(const char* s1, const char* s2)
+void MyString::MyDelChr()
 {
-	if (strlen(s1) == strlen(s2)) {
-		cout << "0";
+	char c;
+	
+	int length = strlen(str);
+	cout << endl << "Input symbol for Del:";
+	cin >> c;
+	for (int i = 0; i < length; i++)
+	{
+		if (str[i] != c) {
+			for (int j = i; j < length; j++) {
+				str[j] = str[i + 1];
+				
+			}
+		}
+		else {
+			cout << "no symbol" << endl;
+		}
 	}
-	if(strlen(s1) < strlen(s2)) {
-		cout << "-1";
+	cout << nwstr;
+}
+
+int MyString::MyStrCmp(MyString& b)
+{
+	if (this->length > b.length) {
+		return 1;
 	}
-	if (strlen(s1) > strlen(s2)) {
-		cout << "1";
+	else if (this->length < b.length) {
+		return -1;
 	}
-	return 0;
+	else {
+		return 0;
+	}
+
 	
 }
 
-/*void MyString::MyDelChr()
-{
-	MyString newStr;
-	newStr.str = new char[length+1];
-	cout << endl << "Input symbol for del:";
-	char submol;
-	cin >> submol;
-	int count = 1;
-	int coub = 1;
-	for (int i = 0; i < strlen(str); i++) {
-		if (str[i] == submol) {
-
-			cout << endl << "Symbol was del " << submol << " : " << count;
-			
-			break;
-
-		}
-		else {
-			count++;
-			coub = false;
-		}
-	}
-	if (coub == false) {
-		cout << endl << "Symbol not found";
-
-	}
-
-}
-
-*/
 
 void MyString::MyChr()
 {
@@ -151,7 +144,7 @@ MyString::MyString(const MyString& temp)
 	cout << endl << "Copyy";
 }
 
-void MyString::MyStrStr(const char* txt)//доделать
+void MyString::MyStrStr(const char* txt)
 {
 	cout << endl << "Input text for search:";
 	strsearch = new char[strlen(txt) + 1];
@@ -214,7 +207,7 @@ int main() {
 	 
 	
 	MyString obj1;
-	
+	MyString obj5;
 	MyString str("ASDFasdfasdfak;askdf;alskdf;laksdfaskd;flkas;dfk;asdkf;laks;dfk;aks;ldfka;lskdf;asdkf;aksd;lfkaksd;flkalsdfsalkdf;laskdf;laskdf;lkas;ldfk;laskdf;asldkfl;askdf;lsakdf;as;ldfk;klasdfk;fasdk;lafsd;klfsadk;lafsdk;lfasd;klafsd;kfasd;kfasd;kalfsd;lkafsd;klfdsakfasd;klfas;ldfsadf");
 	//больше 80символов
 	//str.Conclusion();
@@ -224,6 +217,9 @@ int main() {
 		obj2.Conclusion();
 	obj1.MyChr();
 	obj1.MyStrLen();
+	
+	//obj1.MyDelChr();
+	obj1.Conclusion();
 	//MyString MyStrCmp(char *obj1,char *obj2);//должен выводить 0 так как второй обьект это копия первого.
 	cout << MyString::GetCount();//-должен выводить кол.во обьектов.
 	
