@@ -9,19 +9,19 @@ class MyString {
 		int length;
 		static int count;
 	public:
-		MyString();
-		MyString(const char* txt);
+		 MyString();//модифицирует
+		 MyString(const char* txt);//модифицирует
 
-		~MyString();
-		void Input();
-		void Conclusion();
-		MyString(const MyString& str);
-		bool MyStrStr(const char* str);
-		void  MyChr();
-		int MyStrLen();
-		void MyStrCat(MyString& obj);
-		void MyDelChr();
-		int MyStrCmp(MyString& b);
+		~MyString();//модифицирует
+		void Input();//модифицирует
+		const void Conclusion();//не модифицирует
+		MyString(const MyString& str);//модифицирует
+		const bool MyStrStr(const char* str);//не модифицирует
+		const void  MyChr();//не модифицирует
+		const int MyStrLen();//не модифицирует
+		const void MyStrCat(MyString& obj);//не модифицирует
+		const void MyDelChr();//не модифицирует
+		const int MyStrCmp(MyString& b);//не модифицирует
 		static int GetCount()  
 		{
 			cout << endl << "Obj in MyString:";
@@ -33,7 +33,7 @@ class MyString {
 int MyString::count = 0;
 
 
-int MyString::MyStrLen()
+const int MyString::MyStrLen()
 {
 	int length = strlen(str);
 	cout << endl <<"Characters in text: " << length;
@@ -41,7 +41,7 @@ int MyString::MyStrLen()
 	return 0;
 }
 
-void MyString::MyStrCat(MyString& obj)//объединение строк
+const void MyString::MyStrCat(MyString& obj)//объединение строк
 {
 	
 	MyString newStr;
@@ -70,7 +70,7 @@ void MyString::MyStrCat(MyString& obj)//объединение строк
 	
 }
 
-void MyString::MyDelChr()
+const void MyString::MyDelChr()
 {
 	char c;
 	
@@ -113,7 +113,7 @@ void MyString::MyDelChr()
 	strcpy_s(str, length, Temp.str);
 }
 
-int MyString::MyStrCmp(MyString& b)
+const int MyString::MyStrCmp(MyString& b)
 {
 	if (this->length > b.length) {
 		return 1;
@@ -129,7 +129,7 @@ int MyString::MyStrCmp(MyString& b)
 }
 
 
-void MyString::MyChr()
+const void MyString::MyChr()
 {
 	cout << endl << "Input symbol for search:";
 	char submol;
@@ -165,7 +165,7 @@ MyString::MyString(const MyString& temp)
 	cout << endl << "Copyy";
 }
 
-bool MyString::MyStrStr(const char* str)
+const bool MyString::MyStrStr(const char* str)
 {
 	int Size = strlen(str);
 	for (int i = 0; i < Size; ++i) {
@@ -226,7 +226,7 @@ void MyString::Input()//до 80 символов
 
 }
 
-void MyString::Conclusion()
+const void MyString::Conclusion()
 {
 	cout << endl << "txt - " << str;
 }
