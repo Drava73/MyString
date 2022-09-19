@@ -23,6 +23,7 @@ class MyString {
 		const void MyDelChr();//не модифицирует
 		const int MyStrCmp(MyString& b);//не модифицирует
 		char operator[](int indx);
+		MyString& operator= (const MyString& obj);
 		static int GetCount()  
 		{
 			cout << endl << "Obj in MyString:";
@@ -136,6 +137,12 @@ char MyString::operator[](int indx)
 		return str[indx];
 	}
 	return '\0';
+}
+
+MyString& MyString::operator=(const MyString& obj)
+{
+	str = obj.str;
+	return *this; 
 }
 
 
