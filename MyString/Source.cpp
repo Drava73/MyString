@@ -22,6 +22,7 @@ class MyString {
 		const void MyStrCat(MyString& obj);//не модифицирует
 		const void MyDelChr();//не модифицирует
 		const int MyStrCmp(MyString& b);//не модифицирует
+		char operator[](int indx);
 		static int GetCount()  
 		{
 			cout << endl << "Obj in MyString:";
@@ -126,6 +127,15 @@ const int MyString::MyStrCmp(MyString& b)
 	}
 
 	
+}
+
+char MyString::operator[](int indx)
+{
+	if (indx >= 0 && indx<strlen(str))
+	{
+		return str[indx];
+	}
+	return '\0';
 }
 
 
