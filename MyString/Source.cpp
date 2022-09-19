@@ -11,7 +11,9 @@ class MyString {
 	public:
 		 MyString();//модифицирует
 		 MyString(const char* txt);//модифицирует
-
+		 MyString(int m_length = 0) {
+			 length = m_length;
+		 };
 		~MyString();//модифицирует
 		void Input();//модифицирует
 		const void Conclusion();//не модифицирует
@@ -27,6 +29,15 @@ class MyString {
 		MyString& operator()(MyString& obj) {
 			return obj;
 		};
+		operator int() { 
+			return length;
+		}
+		int getlength() {
+			return length;
+		}
+		void setlength(int m_length) {
+			length = m_length; 
+		}
 		static int GetCount()  
 		{
 			cout << endl << "Obj in MyString:";
