@@ -24,6 +24,9 @@ class MyString {
 		const int MyStrCmp(MyString& b);//не модифицирует
 		char operator[](int indx);
 		MyString& operator= (const MyString& obj);
+		MyString& operator()(MyString& obj) {
+			return obj;
+		};
 		static int GetCount()  
 		{
 			cout << endl << "Obj in MyString:";
