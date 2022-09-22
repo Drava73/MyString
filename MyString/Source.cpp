@@ -1,48 +1,48 @@
-#include <iostream>
+п»ї#include <iostream>
 using namespace std;
 
 class MyString {
-	private:
-		char* str;
-		char* strsearch;
-		char* nwstr;
-		int length;
-		static int count;
-	public:
-		 MyString();//модифицирует
-		 MyString(const char* txt);//модифицирует
-		 MyString(int m_length = 0) {
-			 length = m_length;
-		 };
-		~MyString();//модифицирует
-		void Input();//модифицирует
-		const void Conclusion();//не модифицирует
-		MyString(const MyString& str);//модифицирует
-		const bool MyStrStr(const char* str);//не модифицирует
-		const void  MyChr();//не модифицирует
-		const int MyStrLen();//не модифицирует
-		const void MyStrCat(MyString& obj);//не модифицирует
-		const void MyDelChr();//не модифицирует
-		const int MyStrCmp(MyString& b);//не модифицирует
-		char operator[](int indx);
-		MyString& operator= (const MyString& obj);
-		MyString& operator()(MyString& obj) {
-			return obj;
-		};
-		operator int() { 
-			return length;
-		}
-		int getlength() {
-			return length;
-		}
-		void setlength(int m_length) {
-			length = m_length; 
-		}
-		static int GetCount()  
+private:
+	char* str;
+	char* strsearch;
+	char* nwstr;
+	int length;
+	static int count;
+public:
+	MyString();//РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	MyString(const char* txt);//РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+
+	~MyString();//РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	void Input();//РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	const void Conclusion();//РЅРµ РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	MyString(const MyString& str);//РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	const bool MyStrStr(const char* str);//РЅРµ РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	const void  MyChr();//РЅРµ РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	const int MyStrLen();//РЅРµ РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	const void MyStrCat(MyString& obj);//РЅРµ РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	const void MyDelChr();//РЅРµ РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	const int MyStrCmp(MyString& b);//РЅРµ РјРѕРґРёС„РёС†РёСЂСѓРµС‚
+	MyString(MyString&& obj2);
+	MyString& operator = (MyString& obj2);
+	 
+	MyString(initializer_list<char> s) {
+		cout << "initializer_list";
+		cout << s.size()<< endl;
+		length = s.size();
+		str = new char[length];
+		for (auto x = s.begin(); x != s.end(); x++)
 		{
-			cout << endl << "Obj in MyString:";
-			return count;
+			*str = *x;
+			str++;
 		}
+		str -= length;
+	}
+
+	static int GetCount()
+	{
+		cout << endl << "Obj in MyString:";
+		return count;
+	}
 
 
 };
@@ -52,14 +52,14 @@ int MyString::count = 0;
 const int MyString::MyStrLen()
 {
 	int length = strlen(str);
-	cout << endl <<"Characters in text: " << length;
-	
+	cout << endl << "Characters in text: " << length;
+
 	return 0;
 }
 
-const void MyString::MyStrCat(MyString& obj)//объединение строк
+const void MyString::MyStrCat(MyString& obj)//РѕР±СЉРµРґРёРЅРµРЅРёРµ СЃС‚СЂРѕРє
 {
-	
+
 	MyString newStr;
 
 	int length = strlen(str);
@@ -80,16 +80,16 @@ const void MyString::MyStrCat(MyString& obj)//объединение строк
 		newStr.str[i] = obj.str[j];
 	}
 
-	cout << newStr.str[length + secondlength] ;
+	cout << newStr.str[length + secondlength];
 
-	
-	
+
+
 }
 
 const void MyString::MyDelChr()
 {
 	char c;
-	
+
 	int length = strlen(str);
 	cout << endl << "Input symbol for Del:";
 	cin >> c;
@@ -141,22 +141,28 @@ const int MyString::MyStrCmp(MyString& b)
 		return 0;
 	}
 
-	
+
 }
 
-char MyString::operator[](int indx)
+MyString::MyString(MyString&& obj2)
 {
-	if (indx >= 0 && indx<strlen(str))
+	cout << "Constructor MOVE\n";
+	str = obj2.str;  
+	obj2.str = nullptr;
+
+	 
+}
+
+MyString& MyString::operator=(MyString& obj2)
+{
+	if (str != nullptr)
 	{
-		return str[indx];
+		delete[] str;
 	}
-	return '\0';
-}
-
-MyString& MyString::operator=(const MyString& obj)
-{
-	str = obj.str;
-	return *this; 
+	cout << "= MOVE\n";
+	str = obj2.str;  
+	obj2.str = nullptr;
+		return *this;
 }
 
 
@@ -164,8 +170,8 @@ const void MyString::MyChr()
 {
 	cout << endl << "Input symbol for search:";
 	char submol;
-	cin>> submol;
-	int count=1;
+	cin >> submol;
+	int count = 1;
 	int coub = 1;
 	for (int i = 0; i < strlen(str); i++) {
 		if (str[i] == submol) {
@@ -184,7 +190,7 @@ const void MyString::MyChr()
 		cout << endl << "Symbol not found";
 
 	}
-	
+
 }
 
 
@@ -213,7 +219,7 @@ const bool MyString::MyStrStr(const char* str)
 
 	return false;
 
-		
+
 
 }
 
@@ -226,7 +232,7 @@ MyString::MyString()
 	length = 0;
 }
 
-MyString::MyString(const char* txt)//ввод строки любого ра3мера
+MyString::MyString(const char* txt)//РІРІРѕРґ СЃС‚СЂРѕРєРё Р»СЋР±РѕРіРѕ СЂР°3РјРµСЂР°
 {
 	count++;
 	str = new char[strlen(txt) + 1];
@@ -241,7 +247,7 @@ MyString::~MyString()
 	count--;
 }
 
-void MyString::Input()//до 80 символов
+void MyString::Input()//РґРѕ 80 СЃРёРјРІРѕР»РѕРІ
 {
 	count++;
 	char buff[80];
@@ -267,25 +273,25 @@ const void MyString::Conclusion()
 
 int main() {
 
-	 
-	
+
+
 	MyString obj1;
 	MyString obj5;
 	MyString str("ASDFasdfasdfak;askdf;alskdf;laksdfaskd;flkas;dfk;asdkf;laks;dfk;aks;ldfka;lskdf;asdkf;aksd;lfkaksd;flkalsdfsalkdf;laskdf;laskdf;lkas;ldfk;laskdf;asldkfl;askdf;lsakdf;as;ldfk;klasdfk;fasdk;lafsd;klfsadk;lafsdk;lfasd;klafsd;kfasd;kfasd;kalfsd;lkafsd;klfdsakfasd;klfas;ldfsadf");
-	//больше 80символов
+	//Р±РѕР»СЊС€Рµ 80СЃРёРјРІРѕР»РѕРІ
 	//str.Conclusion();
 	obj1.Input();
 	obj1.Conclusion();
-	MyString obj2(obj1);//делаем копию , вы3ывая констрктор.
-		obj2.Conclusion();
+	MyString obj2(obj1);//РґРµР»Р°РµРј РєРѕРїРёСЋ , РІС‹3С‹РІР°СЏ РєРѕРЅСЃС‚СЂРєС‚РѕСЂ.
+	obj2.Conclusion();
 	obj1.MyChr();
 	obj1.MyStrLen();
-	
+
 	//obj1.MyDelChr();
 	obj1.Conclusion();
-	
-	cout << MyString::GetCount();//-должен выводить кол.во обьектов.
-	
+
+	cout << MyString::GetCount();//-РґРѕР»Р¶РµРЅ РІС‹РІРѕРґРёС‚СЊ РєРѕР».РІРѕ РѕР±СЊРµРєС‚РѕРІ.
+
 
 }
 
